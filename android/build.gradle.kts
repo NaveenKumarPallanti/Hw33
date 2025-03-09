@@ -8,6 +8,9 @@ plugins {
     // Add the Google services plugin (only here at the root level)
     id("com.google.gms.google-services")  apply false
 }
+kotlin {
+    jvmToolchain(17) // Set JVM target to 17 for Kotlin
+}
 allprojects {
     repositories {
         google()

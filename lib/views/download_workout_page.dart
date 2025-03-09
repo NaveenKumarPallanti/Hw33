@@ -15,7 +15,7 @@ class DownloadWorkoutPage extends StatefulWidget {
 class DownloadWorkoutPageState extends State<DownloadWorkoutPage> {
   final TextEditingController _urlController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
-  final DatabaseHelper _dbHelper = DatabaseHelper(); // ✅ FIXED: Correct Instantiation
+  final DatabaseHelper _dbHelper = DatabaseHelper();
 
   WorkoutPlan? _downloadedPlan;
   bool _isLoading = false;
@@ -119,11 +119,11 @@ class DownloadWorkoutPageState extends State<DownloadWorkoutPage> {
         exercises: _downloadedPlan!.exercises,
       );
 
-      List<WorkoutPlan> existingPlans = await _dbHelper.getWorkoutPlans(); // ✅ FIXED
+      List<WorkoutPlan> existingPlans = await _dbHelper.getWorkoutPlans();
       bool exists = existingPlans.any((plan) => plan.name == updatedName);
 
       if (!exists) {
-        await _dbHelper.insertWorkoutPlan(newPlan); // ✅ FIXED
+        await _dbHelper.insertWorkoutPlan(newPlan);
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Workout plan saved successfully!')),
